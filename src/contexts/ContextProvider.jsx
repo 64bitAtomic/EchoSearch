@@ -39,7 +39,6 @@ export const ResultContextProvider = ({ children }) => {
   const getResults = async (term) => {
     setIsLoading(true);
     console.log("Provider SearchTerm: " + term);
-
     // FETCHING Results FROM API
     const response = await fetch(
       `https://google-search74.p.rapidapi.com/?query=${term}`,
@@ -56,10 +55,12 @@ export const ResultContextProvider = ({ children }) => {
     setReults(data.results);
 
     //Fetching images from Api
-
     getImages(term);
+
     getVideos(term);
+
     getNews(term);
+
     setIsLoading(false);
   };
 
