@@ -15,7 +15,7 @@ const Results = () => {
 
   useEffect(() => {
     if (searchTerm !== "None") {
-      //getResults(searchTerm);
+      getResults(searchTerm);
     }
   }, [searchTerm]);
 
