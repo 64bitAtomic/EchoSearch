@@ -33,7 +33,7 @@ To create an intuitive and efficient search engine, Echo Search, that provides u
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/echo-search.git
+   git clone https://github.com/64bitAtomic/EchoSearch
    ```
 2. Navigate into the project directory:
    ```bash
