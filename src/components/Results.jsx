@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Loading } from "./Loading";
 import { useResultsContext } from "../contexts/ContextProvider";
@@ -15,7 +15,7 @@ const Results = () => {
 
   useEffect(() => {
     if (searchTerm !== "None") {
-      getResults(searchTerm);
+      //getResults(searchTerm);
     }
   }, [searchTerm]);
 
@@ -25,20 +25,24 @@ const Results = () => {
     case "/search":
       return (
         <div className="flex flex-wrap justify-between space-y-6 sm:px-56">
-          {results.map(({ title, url, position }) => {
-            return (
-              <div key={position} className="md:w-2/5 w-full">
-                <a href={url} target="_blank" rel="noreferrer">
-                  <p className="text-sm">
-                    {url.length > 30 ? url.substring(0, 30) : url}
-                  </p>
-                  <p className="text-lg hover:underline dark:text-blue-300 text-blue-700">
-                    {title}
-                  </p>
-                </a>
-              </div>
-            );
-          })}
+          {results.length > 0 ? (
+            results.map(({ title, url, position }) => {
+              return (
+                <div key={position} className="md:w-2/5 w-full">
+                  <a href={url} target="_blank" rel="noreferrer">
+                    <p className="text-sm">
+                      {url.length > 30 ? url.substring(0, 30) : url}
+                    </p>
+                    <p className="text-lg hover:underline dark:text-blue-300 text-blue-700">
+                      {title}
+                    </p>
+                  </a>
+                </div>
+              );
+            })
+          ) : (
+            <InfoMsg />
+          )}
         </div>
       );
     case "/images":
@@ -67,54 +71,62 @@ const Results = () => {
     case "/news":
       return (
         <div className="flex flex-wrap justify-between space-y-6 sm:px-56 items-center">
-          {news
-            .filter((item) => item !== item.stories)
-            .map(({ title, link, source }, index) => {
-              const name = source?.name || "n/a";
-              link = link || "URL not avaible";
-              return (
-                <div key={index} className="md:w-2/5 w-full">
-                  <a
-                    className="hover:underline"
-                    href={link}
-                    target="_blank"
-                    rel="noreferrer"
-                  ></a>
-                  <p className="text-lg  dark:text-blue-300 text-blue-700">
-                    {title}
-                  </p>
-                  <div className="flex gap-4">
-                    <p className="text-sm">
-                      {link.length > 30 ? link.substring(0, 30) : link}
-                    </p>{" "}
-                    -
-                    <a href={"/"} target="_blank" rel="noreferrer">
-                      {name}
-                    </a>
+          {news.length > 0 ? (
+            news
+              .filter((item) => item !== item.stories)
+              .map(({ title, link, source }, index) => {
+                const name = source?.name || "n/a";
+                link = link || "URL not avaible";
+                return (
+                  <div key={index} className="md:w-2/5 w-full">
+                    <a
+                      className="hover:underline"
+                      href={link}
+                      target="_blank"
+                      rel="noreferrer"
+                    ></a>
+                    <p className="text-lg  dark:text-blue-300 text-blue-700">
+                      {title}
+                    </p>
+                    <div className="flex gap-4">
+                      <p className="text-sm">
+                        {link.length > 30 ? link.substring(0, 30) : link}
+                      </p>{" "}
+                      -
+                      <a href={"/"} target="_blank" rel="noreferrer">
+                        {name}
+                      </a>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+          ) : (
+            <InfoMsg />
+          )}
         </div>
       );
     case "/videos":
       return (
         <div className="flex flex-wrap justify-center ">
-          {videos.map((video, index) => (
-            <div key={index} className="p-2">
-              <ReactPlayer
-                url={video.link}
-                controls
-                width={"355px"}
-                height={"200px"}
-              />
-              <p className="text-lg  dark:text-blue-300 text-blue-700">
-                {video.title.length > 20
-                  ? video.title.substring(0, 30)
-                  : video.title}
-              </p>
-            </div>
-          ))}
+          {videos.length > 0 ? (
+            videos.map((video, index) => (
+              <div key={index} className="p-2">
+                <ReactPlayer
+                  url={video.link}
+                  controls
+                  width={"355px"}
+                  height={"200px"}
+                />
+                <p className="text-lg  dark:text-blue-300 text-blue-700">
+                  {video.title.length > 20
+                    ? video.title.substring(0, 30)
+                    : video.title}
+                </p>
+              </div>
+            ))
+          ) : (
+            <InfoMsg />
+          )}
         </div>
       );
 
