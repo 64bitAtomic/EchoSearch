@@ -1,13 +1,10 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const InfoMsg = () => {
   return (
     <>
-      <a
-        href="/"
-        target="_blank"
-        className="group relative block h-64 sm:h-80 lg:h-96"
-      >
+      <a href="/" className="group relative block h-64 sm:h-80 lg:h-96">
         <span className="absolute inset-0 border-2 border-dashed border-black dark:border-white"></span>
 
         <div className="relative flex h-full transform items-end border-2 border-black bg-white dark:bg-gray-800 dark:border-gray-700 transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2">
@@ -82,6 +79,14 @@ const InfoMsg = () => {
             </a>
 
             {/* <p className="mt-8 font-bold text-black dark:text-white">Read more</p> */}
+            <NavLink
+              to="/game"
+              className="mt-8 group relative -translate-y-1 inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 dark:text-indigo-400 focus:outline-none focus:ring active:text-indigo-500 dark:active:text-indigo-300 ml-2"
+            >
+              <span className="text-sm font-medium transition-all group-hover:me-4 text-black dark:text-white">
+                ⌨️ Monster Type
+              </span>
+            </NavLink>
           </div>
         </div>
       </a>

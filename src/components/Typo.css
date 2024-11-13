@@ -1,0 +1,11 @@
+
+
+.App{
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Noto Sans Mono',monospace;
+    background-color: #e7e0e9;
+}
